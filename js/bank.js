@@ -1,28 +1,39 @@
-const depositButton = document.getElementById('deposit-btn')
-const withdrawButton = document.getElementById('withdraw-btn')
-const balance = document.getElementById('balance')
-
-
+const mainBalance = document.getElementById('balance')
 // deposit 
-depositButton.addEventListener('click', function(){
+document.getElementById('deposit-btn').addEventListener('click', function(){
 
     const depositInput = document.getElementById('deposit-input');
-    const depositAmount = depositInput.value;
-    const deposit = document.getElementById('deposit');
-    
-    deposit.innerText = parseFloat(depositAmount) + parseFloat(deposit.innerText);
-    balance.innerText = parseFloat(depositAmount) + parseFloat(balance.innerText);
+    const depositStatus = document.getElementById('deposit');
+    if(depositInput.value === '' || depositInput.value === 'string'){
+        alert('Please Input Amount!!');
+        withdrawInput.value = '';
+    }
+    else{
+        depositStatus.innerText = parseFloat(depositInput.value) + parseFloat(depositStatus.innerText);
+    mainBalance.innerText = parseFloat(mainBalance.innerText) + parseFloat(depositInput.value);
     depositInput.value = '';
-
+    }
 })
 
-// withdraw 
-withdrawButton.addEventListener('click',function(){
-const withraw = document.getElementById('withdraw');
-const withdrawInput = document.getElementById('withdraw-input');
+// withdraw
+document.getElementById('withdraw-btn').addEventListener('click', function(){
+    const withdrawInput = document.getElementById('withdraw-input'); 
+    const withdrawStatus = document.getElementById('withdraw');
 
-withdraw.innerText = parseFloat(withdraw.innerText) + parseFloat(withdrawInput.value);
-balance.innerText = parseFloat(balance.innerText) - parseFloat(withdraw.innerText)
-withdrawInput.value = '';
+    if(parseFloat(mainBalance.innerText) >= parseFloat(withdrawInput.value)){
+     withdrawStatus.innerText = parseFloat(withdrawInput.value) + parseFloat(withdrawStatus.innerText);
+    mainBalance.innerText = parseFloat(mainBalance.innerText) - parseFloat(withdrawInput.value);
+    withdrawInput.value = '';
+    
+    }
+    else if(withdrawInput.value === '' || withdrawInput.value === 'string'){
+        alert('Please Input Amount!!');
+        withdrawInput.value = '';
+    }
+    else{
+        alert('Taka nai eto deposit koro!!');
+        withdrawInput.value = '';
+    }
 
-})
+   
+});
