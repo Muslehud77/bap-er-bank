@@ -3,7 +3,7 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 
 login.addEventListener('click', function(){
-  if (email.value === 'baperbank@gmail.com' && password.value === '123123'){
+  if (email.value === 'baperbank@gmail.com' || email.value === 'Baperbank@gmail.com'  && password.value === '123123'){
        location.href = "./Bank.html";
   }
   else if(email.value === '' || password.value === ''){
